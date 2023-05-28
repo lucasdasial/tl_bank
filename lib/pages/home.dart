@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tl_bank/pages/deposit.dart';
 import 'package:tl_bank/pages/price_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,12 +8,20 @@ class HomePage extends StatelessWidget {
 
   final double amount = 200.69;
 
-  onOpenPricePage(BuildContext ctx) {
-    print('click');
+  onOpenPricePage(BuildContext context) {
     Navigator.push(
-      ctx,
+      context,
       MaterialPageRoute(
         builder: (_) => const PricePage(),
+      ),
+    );
+  }
+
+  onOpenDepositPage(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const DepositPage(),
       ),
     );
   }
@@ -55,7 +64,9 @@ class HomePage extends StatelessWidget {
                       children: [
                         homeOptionButton(
                             'Transferir', 'alternateExchange', () {}, context),
-                        homeOptionButton('Depositar', 'donate', () {}, context)
+                        homeOptionButton('Depositar', 'donate', () {
+                          onOpenDepositPage(context);
+                        }, context)
                       ],
                     ),
                     Column(
