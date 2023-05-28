@@ -62,12 +62,7 @@ class _PricePageState extends State<PricePage> {
             case ConnectionState.none:
 
             case ConnectionState.waiting:
-              return const Center(
-                child: Text(
-                  'Loading...',
-                  textAlign: TextAlign.center,
-                ),
-              );
+              return const Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
                 String? erro = snapshot.error.toString();
