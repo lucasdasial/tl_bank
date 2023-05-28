@@ -1,18 +1,17 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:line_icons/line_icons.dart';
 
-class CotacaoPage extends StatefulWidget {
-  const CotacaoPage({super.key});
+class PricePage extends StatefulWidget {
+  const PricePage({super.key});
 
   @override
-  State<CotacaoPage> createState() => _CotacaoPageState();
+  State<PricePage> createState() => _PricePageState();
 }
 
-class _CotacaoPageState extends State<CotacaoPage> {
+class _PricePageState extends State<PricePage> {
   Future<Map> getData() async {
     var url =
         Uri.parse('https://api.hgbrasil.com/finance?format=json&key=801a9dce');
@@ -53,7 +52,7 @@ class _CotacaoPageState extends State<CotacaoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cotacao page'),
+        title: const Text('Cotação'),
       ),
       body: FutureBuilder<Map>(
         future: getData(),
@@ -83,12 +82,21 @@ class _CotacaoPageState extends State<CotacaoPage> {
                 euro = snapshot.data!["results"]["currencies"]["EUR"]["buy"];
 
                 return SingleChildScrollView(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Icon(Icons.attach_money,
-                          size: 180.0, color: Colors.green),
+                      const Icon(LineIcons.coins,
+                          size: 180.0, color: Colors.blueGrey),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        child: const Text(
+                          'Digite um valor para ver a cotação atual.',
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
                       campoTexto("Reais", "R\$ ", realController, _realChanged),
                       const Divider(),
                       campoTexto("Euros", "€ ", euroController, _euroChanged),
@@ -113,10 +121,9 @@ Widget campoTexto(
     controller: c,
     decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(color: Colors.green),
         border: const OutlineInputBorder(),
         prefixText: prefix),
-    style: const TextStyle(color: Colors.green, fontSize: 25.0),
+    style: const TextStyle(color: Colors.deepOrange, fontSize: 24),
     onChanged: (value) => {f!(value)},
     keyboardType: const TextInputType.numberWithOptions(decimal: true),
   );

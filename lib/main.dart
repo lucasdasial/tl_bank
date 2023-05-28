@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tl_bank/pages/cotacao.dart';
 import 'package:tl_bank/pages/home.dart';
 
 void main() async {
@@ -13,10 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'TL Bank',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
-      home: HomePage(),
+      theme: ThemeData(
+          useMaterial3: false,
+          scaffoldBackgroundColor: const Color(0xf4f4f4f4),
+          appBarTheme: const AppBarTheme(centerTitle: true),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      home: const HomePage(),
     );
   }
 }
