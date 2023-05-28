@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
+import 'package:tl_bank/components/input.dart';
 
 class PricePage extends StatefulWidget {
   const PricePage({super.key});
@@ -97,11 +98,11 @@ class _PricePageState extends State<PricePage> {
                           ),
                         ),
                       ),
-                      campoTexto("Reais", "R\$ ", realController, _realChanged),
+                      inputText("Reais", "R\$ ", realController, _realChanged),
                       const Divider(),
-                      campoTexto("Euros", "€ ", euroController, _euroChanged),
+                      inputText("Euros", "€ ", euroController, _euroChanged),
                       const Divider(),
-                      campoTexto(
+                      inputText(
                           "Dólares", "US\$ ", dolarController, _dolarChanged),
                       const Divider(),
                     ],
@@ -113,18 +114,4 @@ class _PricePageState extends State<PricePage> {
       ),
     );
   }
-}
-
-Widget campoTexto(
-    String label, String prefix, TextEditingController c, Function? f) {
-  return TextField(
-    controller: c,
-    decoration: InputDecoration(
-        labelText: label,
-        border: const OutlineInputBorder(),
-        prefixText: prefix),
-    style: const TextStyle(color: Colors.deepOrange, fontSize: 24),
-    onChanged: (value) => {f!(value)},
-    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-  );
 }
