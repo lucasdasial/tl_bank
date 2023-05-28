@@ -32,9 +32,6 @@ class _DepositPageState extends State<DepositPage> {
               fontSize: 22,
             ),
           ),
-          Observer(
-            builder: (_) => Text(store.amount.toString()),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 16),
             child: inputText('Valor', 'R\$', amountController, () {}),

@@ -19,10 +19,14 @@ class MyApp extends StatelessWidget {
         title: 'TL Bank',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            useMaterial3: false,
-            scaffoldBackgroundColor: const Color(0xf4f4f4f4),
-            appBarTheme: const AppBarTheme(centerTitle: true),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+          useMaterial3: false,
+          scaffoldBackgroundColor: const Color(0xf2f2f2f2),
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+          ),
+          colorSchemeSeed: Colors.deepOrange,
+          brightness: Brightness.light,
+        ),
         home: HomePage(),
       ),
     );
