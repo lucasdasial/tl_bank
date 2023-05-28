@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:tl_bank/store/app.store.dart';
+import 'package:tl_bank/pages/deposit.dart';
 import 'package:tl_bank/pages/price_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
-  final double amount = 200.69;
-
-  onOpenPricePage(BuildContext ctx) {
-    print('click');
+  onOpenPricePage(BuildContext context) {
     Navigator.push(
-      ctx,
+      context,
       MaterialPageRoute(
         builder: (_) => const PricePage(),
       ),
     );
   }
 
+  onOpenDepositPage(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const DepositPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var store = Provider.of<AppStore>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -36,11 +47,12 @@ class HomePage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 12),
                   child: Row(
                     children: [
-                      Text(
-                        'R\$ ${amount.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 28),
-                      ),
+                      Observer(
+                          builder: (_) => Text(
+                                'R\$ ${store.amount.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 28),
+                              )),
                       const Icon(
                         LineIcons.coins,
                         size: 28,
@@ -55,7 +67,9 @@ class HomePage extends StatelessWidget {
                       children: [
                         homeOptionButton(
                             'Transferir', 'alternateExchange', () {}, context),
-                        homeOptionButton('Depositar', 'donate', () {}, context)
+                        homeOptionButton('Depositar', 'donate', () {
+                          onOpenDepositPage(context);
+                        }, context)
                       ],
                     ),
                     Column(
