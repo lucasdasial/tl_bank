@@ -11,8 +11,9 @@ class Transaction {
   );
 
   String dateFormatted() {
-    String formatted =
-        DateFormat('E,d MMM yyyy HH:mm:ss', 'pt_BRL').format(createdAt);
+    String formatted = DateFormat(
+      'dd/MM/yyy HH:mm:ss',
+    ).format(createdAt);
 
     return formatted;
   }

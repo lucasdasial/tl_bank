@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:tl_bank/pages/history.dart';
 import 'package:tl_bank/pages/transaction.dart';
 import 'package:tl_bank/store/app.store.dart';
 import 'package:tl_bank/pages/deposit.dart';
@@ -33,6 +34,15 @@ class HomePage extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (_) => TransactionPage(),
+      ),
+    );
+  }
+
+  onOpenHistoryPage(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const HistoryPage(),
       ),
     );
   }
@@ -85,8 +95,9 @@ class HomePage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        homeOptionButton(
-                            'Extrato', 'fileInvoice', () {}, context),
+                        homeOptionButton('Extrato', 'fileInvoice', () {
+                          onOpenHistoryPage(context);
+                        }, context),
                         homeOptionButton('Cotação', 'searchDollar', () {
                           onOpenPricePage(context);
                         }, context)

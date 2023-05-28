@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:mobx/mobx.dart';
 import 'package:tl_bank/models/transaction.dart';
 part 'app.store.g.dart';
@@ -9,7 +11,10 @@ abstract class _AppStore with Store {
   double amount = 0.0;
 
   @observable
-  List<Transaction> transactions = [];
+  List<Transaction> transactions = [
+    Transaction('ifood', 39.9),
+    Transaction('shop', 119.9)
+  ];
 
   @action
   void deposit(double value) {
@@ -18,7 +23,6 @@ abstract class _AppStore with Store {
 
   @action
   bool makeTransition(double value) {
-    print('VERIFICATION is $value');
     if (value <= amount) {
       amount = amount - value;
       return true;
@@ -29,7 +33,6 @@ abstract class _AppStore with Store {
 
   @action
   void addOne(Transaction t) {
-    print('NEW TRANSACTION ADDED!');
     transactions.add(t);
   }
 }
