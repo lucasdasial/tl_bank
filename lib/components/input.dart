@@ -18,7 +18,9 @@ Widget inputText(
         border: const OutlineInputBorder(),
         prefixText: prefix),
     style: const TextStyle(color: Colors.deepOrange, fontSize: 24),
-    onChanged: (value) => {f!(value)},
+    onChanged: (value) {
+      f!(value);
+    },
     keyboardType: type,
   );
 }
